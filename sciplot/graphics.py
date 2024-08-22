@@ -28,9 +28,9 @@ if (not is_jupyter()):
 class PlotData:
     def __init__(self, x, y, label, z=None, color='auto', linestyle='solid', alpha=1.0, linewidth=1.0, text=None):
 
-        self.x = x
-        self.y = y
-        self.z = z
+        self.x = np.array(x)
+        self.y = np.array(y)
+        self.z = np.array(z) if z is not None else z
         self.label = label
         self.color = color
         self.linestyle = linestyle
@@ -84,7 +84,7 @@ def cool_plot(*data:PlotData,
               xlim=None, ylim=None, title=None,
               xlabel=None, ylabel=None, zlabel=None,
               width=15, height=6,
-              save=None, filename=None, show_grid=True, show_legend=True, legend_args=None):
+              save=None, filename=None, show_grid=True, show_legend=True, legend_args={}):
         
     # Convert data to numpy to avoid error
     for d in data: 
